@@ -1,0 +1,4 @@
+.gitignore
+.gitignore~
+..gitignore.un~
+__pycache__/
