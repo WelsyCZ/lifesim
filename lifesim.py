@@ -1,3 +1,9 @@
+### LIFESIM v1.0
+### This version actually does not change according to the last generation,
+### but w.r.t. the current state of the grid
+### It also initiates in a completely random state
+import os
+import time
 from life import Life
 
 W = 10
@@ -10,7 +16,7 @@ if grid == []:
 
     for y in range(W):
         for x in range(W):
-            grid[y].append(Life(grid, x, y, random=False, state=1 if x==2 or y==2 else 0))
+            grid[y].append(Life(grid, x, y))
 
 
 
@@ -24,10 +30,22 @@ def printGrid(grid):
     print("=====================")
 
 
+clear = lambda: os.system('cls') #on Windows System
 
 
 if __name__ == '__main__':
     print("LifeSim v1.0")
-    #input('Press enter to start')
+    its = int(input('Set number of iterations:'))
+    time.sleep(1)
+    clear()
+    print("Generation 0")
     printGrid(grid)
+    for i in range(1,its+1):
+        for r in grid:
+            for e in r:
+                e.nextGen()
+        time.sleep(1)
+        clear()
+        print("Generation", i)
+        printGrid(grid)
     #input('Press enter to end')

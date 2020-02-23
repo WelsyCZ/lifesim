@@ -1,11 +1,12 @@
+### LIFE class for lifesim v1.0
 import random
 
-STATES = [" ", "o"]
+STATES = [" ", "■"]
 
 class Life:
     
-    def __init__(self, grid, x, y, random=True, state=None):
-        self.state = random.choice([0,0,0,1]) if random else state
+    def __init__(self, grid, x, y, rand=True, state=None):
+        self.state = random.choice([0,1,1,1]) if rand else state
         self.grid = grid
         self.x = x
         self.y = y
@@ -43,6 +44,15 @@ class Life:
 
     def isAlive(self):
         return self.state != 0
+
+    def nextGen(self):
+        nbsAlive = self.getLiveNBS()
+        if(self.isAlive and (nbsAlive > 3 or nbsAlive < 2)):
+            self.state = 0
+        elif(not self.isAlive and nbsAlive == 3):
+            self.state = 1
+        
+    
 
     
     
